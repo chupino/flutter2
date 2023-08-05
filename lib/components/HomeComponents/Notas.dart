@@ -81,12 +81,14 @@ class _NotasHomeState extends State<NotasHome> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed('notaDetails', arguments: index);
+                    },
                     child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         width: MediaQuery.of(context).size.width - 20,
                         child: ListTile(
-                            title: Container(
+                            title: SizedBox(
                               width: MediaQuery.of(context).size.width * 0.7,
                               child: Text(
                                 snapshot.data![index]["title"] ?? Container(),
@@ -94,7 +96,7 @@ class _NotasHomeState extends State<NotasHome> {
                                     fontFamily: "Georgia", fontSize: 20),
                               ),
                             ),
-                            leading: Container(
+                            leading: SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.3,
                                 height: double.maxFinite,
                                 child: CachedNetworkImage(

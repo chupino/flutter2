@@ -1,4 +1,8 @@
+// ignore: file_names
+import 'package:diario_el_pueblo/pages/download/downloads.dart';
+import 'package:diario_el_pueblo/pages/explore/explore.dart';
 import 'package:diario_el_pueblo/pages/home/home.dart';
+import 'package:diario_el_pueblo/pages/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -30,38 +34,39 @@ class _NavBarState extends State<NavBar> {
         selectedColorOpacity: 0.2,
         items: [
           SalomonBottomBarItem(
-            icon: Icon(
+            icon: const Icon(
               FontAwesomeIcons.house,
             ),
-            title: Text("Inicio"),
+            title: const Text("Inicio"),
           ),
           SalomonBottomBarItem(
-            icon: Icon(
+            icon: const Icon(
+              // ignore: deprecated_member_use
               FontAwesomeIcons.search,
             ),
-            title: Text("Explorar"),
+            title: const Text("Explorar"),
           ),
           SalomonBottomBarItem(
-            icon: Icon(
+            icon: const Icon(
               FontAwesomeIcons.download,
             ),
-            title: Text("Descargas"),
+            title: const Text("Descargas"),
           ),
           SalomonBottomBarItem(
-            icon: Icon(
+            icon: const Icon(
               Icons.settings,
             ),
-            title: Text("Ajustes"),
+            title: const Text("Ajustes"),
           ),
         ],
       ),
       body: IndexedStack(
         index: _currentIndex,
-        children: [
+        children: const [
           HomePage(),
-          HomePage(),
-          HomePage(),
-          HomePage(),
+          ExplorePage(),
+          DownloadsPage(),
+          SettingsPage()
         ],
       ),
     );

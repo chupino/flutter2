@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="diario_el_pueblo"
+        android:label="Diario el Pueblo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
