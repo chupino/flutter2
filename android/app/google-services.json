@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "859341789652",
+    "project_id": "periodicoprueba-a4997",
+    "storage_bucket": "periodicoprueba-a4997.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859341789652:android:cc32ddb3a6ade01fc05e41",
+        "android_client_info": {
+          "package_name": "com.example.diario_el_pueblo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859341789652-c6rvququald42sfjto9qkcmjejel51j3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKDFEpyXmsUEfmDTLOVRjcMn1JsDteP6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859341789652-c6rvququald42sfjto9qkcmjejel51j3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

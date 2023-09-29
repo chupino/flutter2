@@ -28,7 +28,10 @@ class _PdfViewerState extends State<PdfViewer> {
                       Get.back();
                     },
                     icon: const Icon(Icons.arrow_back_ios)),
-                title: Image.asset('assets/images/logo_blanco.png'),
+                title: Padding(
+                  padding: const EdgeInsets.all(32.0),
+                  child: Image.asset('assets/images/logo_blanco.png'),
+                ),
                 pinned: true,
               ),
               SliverAppBar(

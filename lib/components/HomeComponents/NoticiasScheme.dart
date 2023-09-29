@@ -15,11 +15,8 @@ class NoticiasScreen extends StatefulWidget {
 class _NoticiasScreenState extends State<NoticiasScreen> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(children: [
-        PortadaHome(tabController: widget.tabController),
-        const NotasHome()
-      ]),
+    return const Scaffold(
+      body: NotasHome(),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:diario_el_pueblo/controller/ThemeController.dart';
+import 'package:diario_el_pueblo/core/helpers/Fonts.dart';
 import 'package:diario_el_pueblo/core/helpers/ImageHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,7 +27,10 @@ class _SwitcherBuilderState extends State<SwitcherBuilder> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        controller.switchTheme();
+                        controller.switchToLight();
+                        Get.forceAppUpdate();
+                        Get.changeThemeMode(ThemeMode.light);
+                        Get.forceAppUpdate();
                       });
                     },
                     child: Column(
@@ -56,6 +60,7 @@ class _SwitcherBuilderState extends State<SwitcherBuilder> {
                               Text(
                                 "Modo Claro",
                                 style: TextStyle(
+                                    fontFamily: FontsHelper.droidSerif,
                                     fontSize: 20,
                                     fontWeight: snapshot.data == false
                                         ? FontWeight.bold
@@ -71,7 +76,10 @@ class _SwitcherBuilderState extends State<SwitcherBuilder> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        controller.switchTheme();
+                        controller.switchToDark();
+                        Get.forceAppUpdate();
+                        Get.changeThemeMode(ThemeMode.dark);
+                        Get.forceAppUpdate();
                       });
                     },
                     child: Column(
@@ -102,6 +110,7 @@ class _SwitcherBuilderState extends State<SwitcherBuilder> {
                                 "Modo Oscuro",
                                 style: TextStyle(
                                     fontSize: 20,
+                                    fontFamily: FontsHelper.droidSerif,
                                     fontWeight: snapshot.data == true
                                         ? FontWeight.bold
                                         : FontWeight.normal),

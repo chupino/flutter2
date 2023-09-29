@@ -1,6 +1,7 @@
 import 'package:diario_el_pueblo/core/helpers/TextStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 
 class NoAccountNoPremiumModal {
   BuildContext context;
@@ -35,7 +36,9 @@ class NoAccountNoPremiumModal {
                 ),
                 const Divider(),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed('/login');
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(

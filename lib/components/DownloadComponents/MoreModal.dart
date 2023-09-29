@@ -7,9 +7,11 @@ import 'package:get/get.dart';
 class MoreModal {
   BuildContext context;
   String path;
+  Function callback;
   final controller = Get.put(DownloadController());
-  MoreModal({required this.path, required this.context});
-  void openModal() {
+  MoreModal(
+      {required this.callback, required this.path, required this.context});
+  Future<void> openModal() async {
     showModalBottomSheet(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       context: context,
@@ -51,6 +53,7 @@ class MoreModal {
                 onTap: () {
                   controller.deletePdf(path).then((value) {
                     Navigator.pop(context);
+                    callback();
                     Get.snackbar(
                         backgroundColor:
                             Get.theme.snackBarTheme.backgroundColor,

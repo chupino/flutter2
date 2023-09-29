@@ -1,5 +1,7 @@
 import 'package:diario_el_pueblo/components/ContratarAnuncioComponents/Message.dart';
+import 'package:diario_el_pueblo/core/helpers/LaunchNavigator.dart';
 import 'package:diario_el_pueblo/core/helpers/TextStyles.dart';
+import 'package:diario_el_pueblo/utils/Urls.dart';
 import 'package:flutter/material.dart';
 
 class AnunciosScheme extends StatefulWidget {
@@ -14,21 +16,28 @@ class _AnunciosSchemeState extends State<AnunciosScheme> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8),
-      child: const Column(
+      child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               "Contratar un anuncio",
               style: TextStyles.sectionTitle,
               textAlign: TextAlign.left,
             ),
-            Divider(),
-            SizedBox(height: 10,),
-            MessageAnuncio()
+            const Divider(),
+            const SizedBox(height: 10,),
+            MessageAnuncio(
+              title: '¿Quieres dar a conocer algo?',
+              content: 'Al contratar un anuncio, podrás llegar a más personas y aumentar tus ventas. ¡No pierdas esta oportunidad!',
+              sendText: 'Publica un anuncio ya!',
+              send: () {
+              LaunchNavigator().lanzarNavegador(Urls.formAnuncio);
+            },
+            )
           ]),
     );
   }

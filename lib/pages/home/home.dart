@@ -1,5 +1,9 @@
 import 'package:diario_el_pueblo/components/HomeComponents/Drawer.dart';
 import 'package:diario_el_pueblo/components/HomeComponents/NoticiasScheme.dart';
+import 'package:diario_el_pueblo/core/constants/DarkColorPalette.dart';
+import 'package:diario_el_pueblo/core/constants/LightColorPalette.dart';
+import 'package:diario_el_pueblo/core/helpers/TextStyles.dart';
+import 'package:diario_el_pueblo/pages/home/ForoScreen.dart';
 import 'package:diario_el_pueblo/pages/home/anuncios.dart';
 import 'package:diario_el_pueblo/pages/home/corresponsal.dart';
 import 'package:diario_el_pueblo/pages/home/edicionImpresa.dart';
@@ -18,39 +22,32 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     TabController tabController =
-        TabController(length: 4, vsync: this, animationDuration: Duration.zero);
+        TabController(length: 5, vsync: this, animationDuration: Duration.zero);
     return Scaffold(
       drawer: const DrawerHome(),
-      body: DefaultTabController(
-        length: 4,
-        child: NestedScrollView(
-          // Agrega esta línea
+      body: NestedScrollView(
+
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                elevation: 0.0,
-                iconTheme: const IconThemeData(size: 50),
-                title: Image.asset('assets/images/logo_blanco.png'),
-                expandedHeight: 50,
-                pinned: true,
-              ),
-              SliverAppBar(
-                backgroundColor: Get.theme.primaryColor.withOpacity(0.2),
-                floating: true,
+                
+                pinned: false,
+                backgroundColor: Colors.transparent,
                 automaticallyImplyLeading: false,
                 primary: false,
                 elevation: 8.0,
-                pinned: false,
                 title: Material(
                   color: Colors.transparent,
                   child: TabBar(
                     controller: tabController,
                     isScrollable: true,
-                    indicatorColor: Get.theme.tabBarTheme.indicatorColor,
+                    indicatorColor: Colors.green,
+                    labelStyle: TextStyles.tabsHome,
                     tabs: const [
                       Tab(text: 'LO ÚLTIMO'),
                       Tab(text: 'EDICIÓN DE HOY'),
                       Tab(text: 'CONTRATAR ANUNCIO'),
+                      Tab(text: 'FORO'),
                       Tab(text: 'SE NUESTRO CORRESPONSAL'),
                     ],
                   ),
@@ -58,25 +55,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ];
           },
-          body: TabBarView(
+          body: DefaultTabController(
+            length: 5,
+            child: TabBarView(
               physics: const NeverScrollableScrollPhysics(),
               controller: tabController,
               children: [
                 NoticiasScreen(size: size, tabController: tabController),
                 EdicionImpresaScreen(tabController: tabController),
                 const AnunciosPage(),
-                const CorresponsalScreen()
-              ]),
-        ), // Agrega esta línea
-      ),
-    );
-  }
-
-  Center test(Size size, TabController tabController) {
-    return const Center(
-      child: Column(
-        children: [Text("test")],
-      ),
+                const ForoScreen(),
+                const CorresponsalScreen(),
+              ],
+            ),
+          )),
     );
   }
 }

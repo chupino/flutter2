@@ -7,20 +7,12 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return [
-              SliverAppBar(
-                elevation: 0.0,
-                iconTheme: const IconThemeData(size: 50),
-                title: Image.asset('assets/images/logo_blanco.png'),
-                expandedHeight: 50,
-                automaticallyImplyLeading: false,
-                pinned: true,
-              ),
-            ];
-          },
-          body: const SettingsScheme()),
+      body: CustomScrollView(slivers: [
+        SliverList(
+            delegate: SliverChildListDelegate([
+          const SettingsScheme(),
+        ]))
+      ]),
     );
   }
 }

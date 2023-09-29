@@ -1,5 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:diario_el_pueblo/components/HomeComponents/ErrorLoading.dart';
+import 'package:diario_el_pueblo/components/HomeComponents/FirstNota.dart';
+import 'package:diario_el_pueblo/components/HomeComponents/Nota.dart';
+import 'package:diario_el_pueblo/components/HomeComponents/NotaLoading.dart';
 import 'package:diario_el_pueblo/controller/NotasController.dart';
+import 'package:diario_el_pueblo/core/helpers/TextStyles.dart';
+import 'package:diario_el_pueblo/models/Article.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
@@ -12,117 +19,99 @@ class NotasHome extends StatefulWidget {
 }
 
 class _NotasHomeState extends State<NotasHome> {
+  int dummy = 0;
+  void refresh() {
+    setState(() {
+      dummy++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NotasController());
     return FutureBuilder(
-      future: controller.getNotas(),
+      future: controller.getNotas(dummy),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Row(
-            children: [
-              Shimmer.fromColors(
-                  period: const Duration(seconds: 2),
-                  baseColor: Colors.grey.withOpacity(0.25),
-                  highlightColor: Colors.white.withOpacity(0.6),
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    height: 100,
-                    width: 100,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.grey.withOpacity(0.9)),
-                  )),
-              Column(
-                children: [
-                  Shimmer.fromColors(
-                      period: const Duration(seconds: 2),
-                      baseColor: Colors.grey.withOpacity(0.25),
-                      highlightColor: Colors.white.withOpacity(0.6),
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 10),
-                        height: 32,
-                        width: 220,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.grey.withOpacity(0.9)),
-                      )),
-                  Shimmer.fromColors(
-                      period: const Duration(seconds: 2),
-                      baseColor: Colors.grey.withOpacity(0.25),
-                      highlightColor: Colors.white.withOpacity(0.6),
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 10),
-                        height: 32,
-                        width: 220,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.grey.withOpacity(0.9)),
-                      )),
-                ],
-              )
-            ],
-          );
+          return const SingleChildScrollView(child: NotaLoading());
+        } else if (snapshot.hasError) {
+          print(snapshot.error);
+          return Center(
+              child: ErrorLoading(
+            message:
+                'No se ha podido cargar las noticias, verifica tu conexión',
+            refresh: refresh,
+          ));
         } else if (snapshot.connectionState == ConnectionState.done) {
-          return ListView.builder(
-            shrinkWrap: true,
-            primary: false,
-            itemCount: snapshot.data!.length,
-            itemBuilder: (context, index) {
-              return Container(
-                child: Column(children: <Widget>[
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width - 20,
-                    child: const Divider(
-                      thickness: 1,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed('notaDetails', arguments: index);
-                    },
-                    child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        width: MediaQuery.of(context).size.width - 20,
-                        child: ListTile(
-                            title: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.7,
-                              child: Text(
-                                snapshot.data![index]["title"] ?? Container(),
-                                style: const TextStyle(
-                                    fontFamily: "Georgia", fontSize: 20),
+          List<Article> dataList = snapshot.data!;
+
+          List<Widget> widgetList = dataList.asMap().entries.map((entry) {
+            int index = entry.key;
+            if (index == 0) {
+              return FirstNota(article: dataList[index]);
+            } else {
+              return Column(
+                children: [NotaHome(article: dataList[index]), const Divider()],
+              );
+            }
+          }).toList();
+
+          return Scrollbar(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: widgetList,
+                ),
+              ),
+            ),
+          );
+        }
+        /* return Scrollbar(
+            child: CustomScrollView(
+
+              slivers: [
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      if (index == 0) {
+                        return Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Get.toNamed('notaDetails',
+                                    arguments: snapshot.data![index]);
+                              },
+                              child: FirstNota(
+                                article: snapshot.data![index],
                               ),
                             ),
-                            leading: SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                height: double.maxFinite,
-                                child: CachedNetworkImage(
-                                  imageUrl: snapshot.data![index]["image"],
-                                  fit: BoxFit.cover,
-                                  errorWidget: (context, url, error) =>
-                                      Container(
-                                    color: Colors.black12,
-                                    child: const Icon(
-                                      Icons.error,
-                                      color: Colors.red,
-                                    ),
-                                  ),
-                                )),
-                            subtitle: Container(
-                              padding: const EdgeInsets.symmetric(vertical: 2),
-                              child: snapshot.data![index]["author"] != null
-                                  ? Text(snapshot.data![index]["author"])
-                                  : const Text(""),
-                            ))),
+                          ],
+                        );
+                      } else {
+                        return GestureDetector(
+                          onTap: () {
+                            Get.toNamed('notaDetails',
+                                arguments: snapshot.data![index]);
+                          },
+                          child: Column(
+                            children: [
+                              NotaHome(
+                                article: snapshot.data![index],
+                              ),
+                              const Divider()
+                            ],
+                          ),
+                        );
+                      }
+                    },
+                    childCount: snapshot.data!.length,
                   ),
-                ]),
-              );
-            },
-          );
-        } else {
+                ),
+              ],
+            ),
+          ); */
+        else {
           return Text(snapshot.error.toString());
         }
       },

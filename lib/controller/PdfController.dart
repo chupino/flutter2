@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:diario_el_pueblo/controller/PortadaController.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -9,7 +10,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:encrypt/encrypt.dart' as cy;
 
 class PdfController extends GetxController {
-  Future<Uint8List> getPdfBytes() async {
+  final portadaController = Get.put(PortadaController());
+  Future<Uint8List> getPdfBytes({int dummy = 0}) async {
+    dummy++;
+    await portadaController.getThumbnail();
     final prefs = await SharedPreferences.getInstance();
     final data = await prefs.getString("datosThumbnail")!;
     final dataDecode = json.decode(data);
@@ -33,7 +37,7 @@ class PdfController extends GetxController {
       throw "error";
     }
   }
-  
+
   Future<void> savePdf() async {
     Uint8List bits = await getPdfBytes();
     DateTime now = DateTime.now();

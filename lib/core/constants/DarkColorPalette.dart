@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 
 class DarkColorPalette {
   //General
-  final primaryColor = Colors.black;
+  final primaryColor = Color.fromARGB(255, 78, 78, 78);
   final buttonColor = Colors.green;
   final focusColor = Colors.white;
+
+  //Progress Indicator
+  final progressIndicatorColor = const Color.fromARGB(255, 20, 89, 56);
 
   //Tiles
   final tileColor = const Color.fromARGB(255, 66, 64, 64);
@@ -14,9 +17,10 @@ class DarkColorPalette {
   final elevatedButtonBackgroundColor = Color.fromARGB(255, 8, 101, 56);
 
   //NavBar
-  final backgroundNavBar = const Color.fromARGB(255, 34, 97, 36);
-  final selectedItemNavBar = const Color.fromARGB(255, 68, 210, 85);
-  final unselectedItemNavBar = const Color.fromARGB(255, 59, 181, 65);
+  final backgroundNavBar = Colors.transparent;
+  final selectedItemNavBar = const Color.fromARGB(255, 76, 164, 78);
+  final unselectedItemNavBar =
+      const Color.fromARGB(255, 76, 164, 78).withOpacity(0.8);
 
   //Header
   final backgroundHeader = const Color.fromARGB(255, 76, 164, 78);
@@ -32,6 +36,7 @@ class DarkColorPalette {
   final selectedLabelTabBar = Colors.white;
   final unselectedLabelTabBar = Colors.white.withOpacity(0.7);
   final indicatorColor = Colors.white.withOpacity(0.5);
+  final tabBarBackgroundColor = Colors.black12;
 
   //Divider
   final dividerColor = Colors.white;

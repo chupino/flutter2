@@ -3,7 +3,8 @@ import 'package:diario_el_pueblo/core/helpers/TextStyles.dart';
 import 'package:flutter/material.dart';
 
 class DownloadScheme extends StatelessWidget {
-  const DownloadScheme({super.key});
+  int dummy;
+  DownloadScheme({required this.dummy, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +24,9 @@ class DownloadScheme extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
             const Divider(),
-            Expanded(
-              child: DownloadsBuilder(
-                size: size,
-              ),
+            DownloadsBuilder(
+              dummy: dummy,
+              size: size,
             ),
           ]),
     );

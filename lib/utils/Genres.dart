@@ -1,6 +1,26 @@
 // ignore: file_names
 class GenresNews{
-  final List<Map> tags = [
+  final List<Map<String,dynamic>> tags = [
+  {
+    "titulo": "Editorial",
+    "imagenURL": "https://tiojuan.files.wordpress.com/2020/10/canilla-arequipeno.jpg?w=287",
+    "goTo":"https://diarioelpueblo.com.pe/index.php/category/editorial/"
+  },
+  {
+    "titulo": "Entrevistas",
+    "imagenURL": "https://soyliterauta.com/wp-content/uploads/2020/10/Entrevista-Periodistica.jpg",
+    "goTo":"https://diarioelpueblo.com.pe/index.php/category/entrevistas/"
+  },
+  {
+    "titulo": "Especiales",
+    "imagenURL": "https://www.alwahotel.com/wp-content/uploads/2016/09/diablo-en-la-catedral-AQP-Diario-El-Pueblo.jpg",
+    "goTo":"https://diarioelpueblo.com.pe/index.php/category/especiales/"
+  },
+  {
+    "titulo": "Economía",
+    "imagenURL": "https://www.comexperu.org.pe/upload/images/sem-1129_economia-210722-075720.jpg",
+    "goTo":"https://diarioelpueblo.com.pe/index.php/category/economia/"
+  },
   {
     "titulo": "Cultura",
     "imagenURL": "https://portal.andina.pe/EDPfotografia3/Thumbnail/2017/01/25/000400475W.jpg",
@@ -17,29 +37,9 @@ class GenresNews{
     "goTo":"https://diarioelpueblo.com.pe/index.php/category/distritos/"
   },
   {
-    "titulo": "Economía",
-    "imagenURL": "https://www.comexperu.org.pe/upload/images/sem-1129_economia-210722-075720.jpg",
-    "goTo":"https://diarioelpueblo.com.pe/index.php/category/economia/"
-  },
-  {
-    "titulo": "Editorial",
-    "imagenURL": "https://tiojuan.files.wordpress.com/2020/10/canilla-arequipeno.jpg?w=287",
-    "goTo":"https://diarioelpueblo.com.pe/index.php/category/editorial/"
-  },
-  {
     "titulo": "Educación",
     "imagenURL": "https://larepublica.cronosmedia.glr.pe/original/2019/10/12/62b918ffafced5708606eb96.jpg",
     "goTo":"https://diarioelpueblo.com.pe/index.php/category/educacion/"
-  },
-  {
-    "titulo": "Entrevistas",
-    "imagenURL": "https://soyliterauta.com/wp-content/uploads/2020/10/Entrevista-Periodistica.jpg",
-    "goTo":"https://diarioelpueblo.com.pe/index.php/category/entrevistas/"
-  },
-  {
-    "titulo": "Especiales",
-    "imagenURL": "https://www.alwahotel.com/wp-content/uploads/2016/09/diablo-en-la-catedral-AQP-Diario-El-Pueblo.jpg",
-    "goTo":"https://diarioelpueblo.com.pe/index.php/category/especiales/"
   },
   {
     "titulo": "Internacional",
@@ -62,6 +62,11 @@ class GenresNews{
       "goTo":"https://diarioelpueblo.com.pe/index.php/category/noticias/regional/"
     },
     {
+      "titulo": "Política",
+      "imagenURL": "https://live.staticflickr.com/7243/6884581202_2748cdbde7_b.jpg",
+      "goTo":"https://diarioelpueblo.com.pe/index.php/category/politica/"
+    },
+    {
       "titulo": "Opinión",
       "imagenURL": "https://definicion.de/wp-content/uploads/2009/11/opinion-1.jpg",
       "goTo":"https://diarioelpueblo.com.pe/index.php/category/opinion/"
@@ -75,11 +80,6 @@ class GenresNews{
       "titulo": "Policiales",
       "imagenURL": "https://siip3.institutopacifico.pe/assets/uploads/noticias/9FB0A40BE81390584FECE6DD1877D406_1665067495_original.png",
       "goTo":"https://diarioelpueblo.com.pe/index.php/category/policiales/"
-    },
-    {
-      "titulo": "Política",
-      "imagenURL": "https://live.staticflickr.com/7243/6884581202_2748cdbde7_b.jpg",
-      "goTo":"https://diarioelpueblo.com.pe/index.php/category/politica/"
     },
     {
       "titulo": "Salud",

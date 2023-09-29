@@ -45,7 +45,6 @@ class _PortadaHomeState extends State<PortadaHome> {
               });
             }),
             child: Container(
-                height: 400,
                 width: double.infinity,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),

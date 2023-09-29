@@ -27,6 +27,9 @@ dependencies:
   path: ^1.8.3
   lottie: ^2.5.0
   flutter_native_splash: ^2.3.1
+  onesignal_flutter: ^3.5.1
+  syncfusion_flutter_gauges: ^22.2.7
+  share_plus: ^7.1.0
 
 flutter_native_splash:
   android: true
@@ -57,6 +60,13 @@ flutter:
         - asset: fonts/Poppins-SemiBold.otf
         - asset: fonts/Poppins-Medium.otf
         - asset: fonts/Poppins-Bold.otf
+          weight: 700
+    - family: Droid-Serif
+      fonts:
+        - asset: fonts/DroidSerif-Regular.ttf
+        - asset: fonts/DroidSerif-Bold.ttf
+        - asset: fonts/DroidSerif-BoldItalic.ttf
+        - asset: fonts/DroidSerif-Italic.ttf
           weight: 700
     - family: MyFlutterApp
       fonts:

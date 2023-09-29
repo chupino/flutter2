@@ -13,8 +13,10 @@ class SwitchThemePage extends StatelessWidget {
             return [
               SliverAppBar(
                 elevation: 0.0,
-                iconTheme: const IconThemeData(size: 40),
-                title: Image.asset('assets/images/logo_blanco.png'),
+                title: Padding(
+                  padding: const EdgeInsets.all(32.0),
+                  child: Image.asset('assets/images/logo_blanco.png'),
+                ),
                 automaticallyImplyLeading: false,
                 leading: IconButton(
                     onPressed: () {

@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DownloadController extends GetxController {
+
+
   Future<List<FileSystemEntity>> getFiles() async {
     final Directory directory = await getApplicationDocumentsDirectory();
     List<FileSystemEntity> files = await directory.list().toList();

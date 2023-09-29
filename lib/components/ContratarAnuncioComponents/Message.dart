@@ -6,7 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MessageAnuncio extends StatelessWidget {
-  const MessageAnuncio({super.key});
+  final String title, content, sendText;
+  final MainAxisAlignment? mainAxisAlignmentSend;
+  final double? separationSend;
+  final Function() send;
+  const MessageAnuncio(
+      {super.key,
+      required this.title,
+      required this.content,
+      required this.sendText,
+      required this.send,
+      this.mainAxisAlignmentSend, this.separationSend});
 
   @override
   Widget build(BuildContext context) {
@@ -20,21 +30,19 @@ class MessageAnuncio extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
+          Text(
               textAlign: TextAlign.center,
-              '¿Quieres dar a conocer algo?',
+              title,
               style: TextStyles.sectionSubtitle),
           const SizedBox(height: 16),
-          const Text(
-            'Al contratar un anuncio, podrás llegar a más personas y aumentar tus ventas. ¡No pierdas esta oportunidad!',
+          Text(
+            content,
             style: TextStyles.sectionMessage,
             textAlign: TextAlign.start,
           ),
           const SizedBox(height: 25),
           ElevatedButton(
-            onPressed: () {
-              LaunchNavigator().lanzarNavegador(Urls.formAnuncio);
-            },
+            onPressed: send,
             style: ElevatedButton.styleFrom(
               primary: Colors.red,
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
@@ -43,16 +51,18 @@ class MessageAnuncio extends StatelessWidget {
               ),
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment:
+                  mainAxisAlignmentSend ?? MainAxisAlignment.spaceEvenly,
               children: [
                 Image.asset(
                   height: 50,
                   ImageHelper.selloBlanco,
                 ),
-                const Text(
-                  'Publica un anuncio ya!',
+                SizedBox(width: separationSend,),
+                Text(
+                  sendText,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

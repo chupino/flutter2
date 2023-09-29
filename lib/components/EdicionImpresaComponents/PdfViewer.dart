@@ -1,3 +1,4 @@
+import 'package:diario_el_pueblo/components/HomeComponents/ErrorLoading.dart';
 import 'package:diario_el_pueblo/controller/PdfController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,16 +12,30 @@ class PdfViewerOnline extends StatefulWidget {
 }
 
 class _PdfViewerOnlineState extends State<PdfViewerOnline> {
+  int dummy = 0;
+  void refresh() {
+    setState(() {
+      dummy++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(PdfController());
     PdfViewerController pdfViewerController = PdfViewerController();
     return FutureBuilder(
-      future: controller.getPdfBytes(),
+      future: controller.getPdfBytes(dummy: dummy),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
             child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasError) {
+          print(snapshot.error);
+          return Center(
+            child: ErrorLoading(
+                message: 'No se ha podido cargar, verifica tu conexión',
+                refresh: refresh),
           );
         } else if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasData && snapshot.data != null) {
@@ -63,6 +78,7 @@ class _PdfViewerOnlineState extends State<PdfViewerOnline> {
                                   snackPosition: SnackPosition.BOTTOM,
                                   "Error",
                                   "No se pudo completar la acción"));
+                          setState(() {});
                         },
                         icon: const Icon(Icons.download))
                   ]),
@@ -72,7 +88,7 @@ class _PdfViewerOnlineState extends State<PdfViewerOnline> {
               ),
             );
           } else {
-            return const Text("No se pudo cargar");
+            return Center(child: CircularProgressIndicator());
           }
         } else {
           return Text(snapshot.error.toString());
